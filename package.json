@@ -1,0 +1,15 @@
+{
+  "name": "spicycamcast",
+  "version": "1.0.0",
+  "description": "JS Library for Cameras and Screencasts",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "NIkolaos Sagiadinos",
+  "license": "LGPL-3.0-only",
+  "devDependencies": {
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0"
+  }
+}
