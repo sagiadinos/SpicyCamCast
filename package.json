@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "JS Library for Cameras and Screencasts",
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha"
   },
+  "type": "module",
   "keywords": [],
   "author": "NIkolaos Sagiadinos",
   "license": "LGPL-3.0-only",
   "devDependencies": {
     "chai": "^5.1.2",
-    "mocha": "^11.1.0"
+    "mocha": "^11.1.0",
+    "nyc": "^17.1.0",
+    "terser": "^5.37.0"
   }
 }
