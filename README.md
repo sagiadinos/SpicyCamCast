@@ -62,6 +62,10 @@ spicyCast.startScreencast().then(() => {
 
 ### Capturing a Photo
 
+Captures a photo from the video stream and returns it as a
+JPEG data URL.
+It is also possible to capture photos in PNG and WebP formats.
+
 ```javascript
 const canvasElement = document.querySelector('canvas');
 const photoDataUrl = spicyCam.capturePhotoAsJpeg(canvasElement);
