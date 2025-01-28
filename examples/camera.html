@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Camera</title>
+</head>
+<body>
+	<main>
+		<video id="cameraVideo" autoplay playsinline></video>
+		<div>
+			<p>
+				<label for="toggleCamera"><input id="toggleCamera" type="checkbox">
+					Activate first Camera and start streaming to video element
+				</label>
+			</p>
+		</div>
+	</main>
+ <script type="module">
+   import { SpicyCam } from '../dist/SpicyCam.min.js';
+
+   const videoElement = document.getElementById('cameraVideo');
+   const toggleCamera = document.getElementById('toggleCamera');
+   const spicyCam = new SpicyCam(videoElement);
+
+   toggleCamera.addEventListener('change', async (event) => {
+	   if (event.target.checked) {
+		   try {
+			   await spicyCam.justStart();
+			   console.log('Camera started');
+		   } catch (error) {
+			   console.error('Error starting camera:', error);
+			   event.target.checked = false;
+		   }
+	   } else {
+		   spicyCam.stopCamera();
+		   console.log('Camera stopped');
+	   }
+   });
+ </script>
+</body>
+</html>
