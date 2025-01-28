@@ -61,7 +61,7 @@ describe('SpicyBase', () => {
 				clearRect: () => {},
 				drawImage: () => {}
 			}),
-			toDataURL: (format, quality) => `data:${format};base64,exampledata`
+			toDataURL: (format) => `data:${format};base64,exampledata`
 		};
 		spicyBase.settings  = {width: 640, height: 360};
 		const result = spicyBase.capturePhoto(canvasMock);
@@ -78,7 +78,7 @@ describe('SpicyBase', () => {
 				clearRect: () => {},
 				drawImage: () => {}
 			}),
-			toDataURL: (format, quality) => `data:${format};base64,exampledata`
+			toDataURL: (format) => `data:${format};base64,exampledata`
 		};
 		spicyBase.settings  = {width: 640, height: 360};
 		const result = spicyBase.capturePhotoAsJpeg(canvasMock);
