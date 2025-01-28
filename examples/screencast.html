@@ -5,18 +5,19 @@
   <title>Demo Screencast</title>
 </head>
 <body>
+	<h1>Simple Screencast demonstration</h1>
 	<main>
 		<video id="screencastVideo" autoplay playsinline></video>
 		<div>
 			<p>
 				<label for="toggleScreencast"><input id="toggleScreencast" type="checkbox">
-					Activate Sreencast
+					Activate Screencast and stream to video element
 				</label>
 			</p>
 		</div>
 	</main>
  <script type="module">
-   import { SpicyCast } from '../src/SpicyCast.js';
+   import { SpicyCast } from '../dist/SpicyCast.min.js';
 
    const videoElement = document.getElementById('screencastVideo');
    const toggleScreencast = document.getElementById('toggleScreencast');
