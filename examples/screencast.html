@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Screencast</title>
+</head>
+<body>
+	<main>
+		<video id="screencastVideo" autoplay playsinline></video>
+		<div>
+			<p>
+				<label for="toggleScreencast"><input id="toggleScreencast" type="checkbox">
+					Activate Sreencast
+				</label>
+			</p>
+		</div>
+	</main>
+ <script type="module">
+   import { SpicyCast } from '../src/SpicyCast.js';
+
+   const videoElement = document.getElementById('screencastVideo');
+   const toggleScreencast = document.getElementById('toggleScreencast');
+   const spicyCast = new SpicyCast(videoElement);
+
+   toggleScreencast.addEventListener('change', async (event) => {
+	   if (event.target.checked) {
+		   try {
+			   await spicyCast.startScreencast();
+			   console.log('Screencast started');
+		   } catch (error) {
+			   console.error('Error starting screencast:', error);
+			   event.target.checked = false;
+		   }
+	   } else {
+		   spicyCast.stopScreencast();
+		   console.log('Screencast stopped');
+	   }
+   });
+ </script>
+
+</body>
+</html>
