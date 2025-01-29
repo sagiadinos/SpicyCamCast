@@ -21,6 +21,12 @@
 
 import {SpicyBase} from "./SpicyBase.js";
 
+/**
+ * The SpicyCast class extends the SpicyBase class and provides
+ * functionality for managing screencasts. It maintains a private list of
+ * media streams (#streamList) and initializes with a videoElement passed to
+ * its constructor.
+ */
 export class SpicyCast extends SpicyBase
 {
     #streamList      = [];
@@ -30,6 +36,13 @@ export class SpicyCast extends SpicyBase
 		super(videoElement)
     }
 
+	/**
+	 * The getMediaConstraints method defines the constraints for the video
+	 * stream, setting the ideal width and height to 3840 and 2160 pixels,
+	 * respectively. It returns an object with these video constraints and disables audio.
+	 *
+	 * @returns {{video: {}, audio: boolean}}
+	 */
     getMediaConstraints()
     {
         const videoConstraints    = {};
@@ -40,6 +53,18 @@ export class SpicyCast extends SpicyBase
         return {video: videoConstraints, audio: false};
     }
 
+	/**
+	 * The startScreencast method is an asynchronous function that starts a
+	 * screencast. It returns a promise that resolves when the screencast
+	 * starts successfully.
+	 *
+	 * The method uses navigator.mediaDevices.getDisplayMedia to request
+	 * access to the screen and audio. Upon success, it retrieves the video
+	 * track, saves its settings, adds the stream to the #streamList, and sets
+	 * the videoElement's source to the stream.
+	 *
+	 * @returns {Promise<unknown>}
+	 */
     async startScreencast()
     {
 		return new Promise((resolve, reject) => {
@@ -58,9 +83,12 @@ export class SpicyCast extends SpicyBase
 		});
 	}
 
+	/**
+	 * The stopScreencast method stops the screencast by calling the stop
+	 * method, which is presumably inherited from the SpicyBase class.
+	 */
     stopScreencast()
     {
         this.stop();
     }
-
 }
