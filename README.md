@@ -1,12 +1,13 @@
 # SpicyCamCast
 
-SpicyCamCast is a JavaScript library for easy camera and screencast access. Less than 3 KBy minified it provides
-a simple API to interact with media devices, capture photos, and start/stop video streams.
-The classes were inspired by Benson Ruan [webcam-easy](https://github.com/bensonruan/webcam-easy) library.
+SpicyCamCast is a minimal JavaScript library (sub-3KB) for effortless camera
+and screencast integration. Inspired by Benson Ruan [webcam-easy](https://github.com/bensonruan/webcam-easy) library.
+it capture photos, manage video streams with a concise API.
 
 SpicyCamCast leverages modern JavaScript features such as ES6 classes,
-private fields, promises, and async/await for asynchronous operations. 
-This ensures a clean and maintainable codebase.
+private fields, promises, and async/await for asynchronous operations.
+
+Super easy to add this as a module to your project!
 
 ![ScreenCamCast-Demo.gif](examples/ScreenCamCast-Demo.gif)
 
@@ -42,8 +43,13 @@ spicyCam.justStart().then(() => {
 
 ### Starting a Screencast Stream
 
+### Importing the Screencast Library
+
 ```javascript
 import { SpicyCast } from './src/SpicyCamCast.js';
+```
+
+```javascript
 
 const videoElement = document.querySelector('video');
 const spicyCast = new SpicyCast(videoElement);
