@@ -18,20 +18,13 @@ This ensures a clean and maintainable codebase.
 - Capture photos in various formats (JPEG, PNG, WebP)
 - Mirror video streams
 
-## Installation
 
-To install SpicyCamCast, clone the repository:
-
-```sh
-git clone https://github.com/sagiadinos/SpicyCamCast.git
-```
-
-## Usage SpicyCam-Lib
+## Usage SpicyCamCast-Lib
 
 ### Importing the Cam Library
 
 ```javascript
-import { SpicyCam } from './src/SpicyCam.js';
+import { SpicyCam } from './src/SpicyCamCast.js';
 ```
 
 ### Starting a Camera Stream
@@ -50,6 +43,8 @@ spicyCam.justStart().then(() => {
 ### Starting a Screencast Stream
 
 ```javascript
+import { SpicyCast } from './src/SpicyCamCast.js';
+
 const videoElement = document.querySelector('video');
 const spicyCast = new SpicyCast(videoElement);
 
