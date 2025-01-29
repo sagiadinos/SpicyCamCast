@@ -20,9 +20,12 @@
  */
 
 /**
- * These classes were inspired by Benson Ruan webcam-easy
+ * The SpicyBase class is a JavaScript class designed to facilitate camera and
+ * screencast access. It includes several private fields, such as #imageQuality,
+ * #isMirror, #videoElement, #settings, and #streamList, which are used to
+ * manage the state and configuration of the video element and its associated
+ * streams.
  */
-
 export class SpicyBase
 {
 	#imageQuality    = 0.8
@@ -31,6 +34,12 @@ export class SpicyBase
 	#settings        = null;
 	#streamList      = [];
 
+	/**
+	 * The constructor of the class initializes the #videoElement and sets
+	 * its default width and height if they are not already specified:
+	 *
+	 * @param videoElement
+	 */
 	constructor(videoElement)
 	{
 		this.#videoElement        = videoElement;
@@ -40,6 +49,11 @@ export class SpicyBase
 
 	get videoElement() { return this.#videoElement; }
 
+	/**
+	 * If you use a front camera sometimes people want to mirror the output.
+	 *
+	 * @param value
+	 */
 	set isMirror(value) { this.#isMirror = value;}
 
 	get isMirror() { return this.#isMirror; }
@@ -52,6 +66,10 @@ export class SpicyBase
 
 	set streamList(value) {	this.#streamList = value;}
 
+	/**
+	 * The stop method stops all media tracks in the #streamList and resets
+	 * the videoElement's srcObject.
+	 */
 	stop()
 	{
 		this.#streamList.forEach(stream => {
@@ -63,29 +81,59 @@ export class SpicyBase
 		this.videoElement.srcObject = null; // reset video element
 	}
 
+	/**
+	 * Default value is JPEG with 0.8 quality.
+	 *
+	 * @param canvasElement
+	 * @returns {string}
+	 */
 	capturePhoto(canvasElement)
 	{
 		return this.capturePhotoAsJpeg(canvasElement);
 	}
 
+	/**
+	 * @param canvasElement
+	 * @returns {string}
+	 */
 	capturePhotoAsPng(canvasElement)
 	{
 		canvasElement = this.#handleCanvas(canvasElement);
 		return canvasElement.toDataURL('image/png');
 	}
 
+	/**
+	 * @param canvasElement
+	 * @returns {string}
+	 */
 	capturePhotoAsJpeg(canvasElement)
 	{
 		canvasElement = this.#handleCanvas(canvasElement);
 		return canvasElement.toDataURL('image/jpeg', this.#imageQuality);
 	}
 
+	/**
+	 * @param canvasElement
+	 * @returns {string}
+	 */
 	capturePhotoAsWebp(canvasElement)
 	{
 		canvasElement = this.#handleCanvas(canvasElement);
 		return canvasElement.toDataURL('image/webp', this.#imageQuality);
 	}
 
+	/**
+	 * Handles canvas preparation for photo capture.
+	 *
+	 * This method prepares the provided canvas element for capturing a photo.
+	 * It sets the canvas dimensions based on the specified settings,
+	 * applies the mirror effect if enabled, and draws the current video frame
+	 * onto the canvas.
+	 *
+	 * @private
+	 * @param {HTMLCanvasElement} canvasElement - The canvas element to prepare for photo capture.
+	 * @returns {HTMLCanvasElement} - The prepared canvas element.
+	 */
 	#handleCanvas(canvasElement)
 	{
 		canvasElement.height = this.#settings.height;
