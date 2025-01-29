@@ -21,6 +21,13 @@
 
 import {SpicyBase} from "./SpicyBase.js";
 
+/**
+ * The SpicyCam class extends the SpicyBase class and provides functionality for
+ * managing camera devices. It maintains a private list of cameras (#camerasList)
+ * and the current device ID (#currentDeviceId). The constructor initializes
+ * the class with a videoElement and calls the parent class constructor.
+ *
+ */
 export class SpicyCam extends SpicyBase
 {
     #camerasList     = [];
@@ -37,6 +44,13 @@ export class SpicyCam extends SpicyBase
 
     get currentDeviceId() { return this.#currentDeviceId;}
 
+	/**
+	 * The getMediaConstraints method defines the constraints for the video stream,
+	 * setting the device ID to the current device ID and specifying ideal width
+	 * and height. It returns an object with these video constraints and enables audio
+	 *
+	 * @returns {{video: {}, audio: boolean}}
+	 */
     getMediaConstraints()
     {
         const videoConstraints    = {};
@@ -48,6 +62,12 @@ export class SpicyCam extends SpicyBase
         return {video: videoConstraints, audio: true};
     }
 
+	/**
+	 * The selectCamera method sets the current device ID to the
+	 * specified device ID if it matches one of the detected cameras.
+	 *
+	 * @param deviceId
+	 */
     selectCamera(deviceId)
     {
         for(let camera of this.#camerasList)
@@ -60,6 +80,14 @@ export class SpicyCam extends SpicyBase
         }
     }
 
+	/**
+	 * The detectVideoDevices method detects available video devices and
+	 * updates the cameras list. It returns a promise that resolves with the
+	 * list of video input devices. If an error occurs, it logs the error and
+	 * rejects the promise with an appropriate error message.
+	 *
+	 * @returns {Promise<Array>} A promise that resolves with the list of video input devices.
+	 */
     detectVideoDevices()
     {
         return new Promise(async (resolve, reject) => {
@@ -86,9 +114,12 @@ export class SpicyCam extends SpicyBase
     }
 
 	/**
+	 * The justStart method quickly starts streaming from the first
+	 * detected video device to the video element. It first detects video
+	 * devices, selects the first one, and starts the camera. If no video device
+	 * is found, it rejects the promise with an error.
 	 *
-	 * Just start streaming the first video device found
-	 * to the video elements
+	 * @returns {Promise<unknown>}
 	 */
 	justStart()
 	{
@@ -114,6 +145,15 @@ export class SpicyCam extends SpicyBase
 		});
 	}
 
+	/**
+	 * The startCamera method starts the camera and streams the video to the
+	 * video element. It returns a promise that resolves with the current
+	 * device ID if the camera starts successfully.
+	 *
+	 * If an error occurs, it logs the error and rejects the promise.
+	 *
+	 * @returns {Promise<unknown>}
+	 */
     async startCamera()
     {
         return new Promise((resolve, reject) => {
@@ -138,9 +178,12 @@ export class SpicyCam extends SpicyBase
         });
     }
 
+	/**
+	 * The stopCamera method stops the camera by calling the stop method,
+	 * which is presumably inherited from the SpicyBase class.
+	 */
     stopCamera()
     {
         this.stop();
 	}
-
 }
